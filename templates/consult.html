@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioML - Consult a Doctor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>BioML</h1>
+        <p>Your Personal Health Prediction and Consultation Platform</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('predict') }}">Predict Disease</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('consult') }}">Consult Doctor</a></li>
+            <li><a href="{{ url_for('result_page') }}">Result</a></li>
+            {% if 'username' in session %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('signup') }}">Signup</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <main>
+        <section class="consultation">
+            <h2>Consult With Our Doctors</h2>
+            <p>Select a doctor and view available times for consultation.</p>
+            <div class="doctor-selection">
+                <label for="doctor-select">Choose a doctor:</label>
+                <select id="doctor-select">
+                    <option value="doctor1">Dr. Suraj Josi - Cardiologist</option>
+                    <option value="doctor2">Dr. Meena Chaudhari - Pediatrician</option>
+                    <option value="doctor3">Dr. Ramesh Soni - Neurologist</option>
+                    <option value="doctor1">Dr. Archana Rai - Psychiatrist</option>
+                    <option value="doctor2">Dr. Ramesh Rao - Dermatologist</option>
+                    <option value="doctor3">Dr. Manik Chatterjee - Gastroenterologist</option>
+                    <option value="doctor1">Dr. Ishan Bansal - Allergist</option>
+                    <option value="doctor2">Dr. Anjali Verma - Orthopaedist</option>
+                    <option value="doctor3">Dr. Vikram Singhania - Gynecologist</option>
+                </select>
+            </div>
+            <div class="time-selection">
+                <label for="time-select">Choose a time slot:</label>
+                <select id="time-select">
+                    <option value="time1">10:00 AM - 11:00 AM</option>
+                    <option value="time2">12:00 PM - 1:00 PM</option>
+                    <option value="time3">2:00 PM - 3:00 PM</option>
+                </select>
+            </div>
+            <form action="{{ url_for('book') }}" method="get">
+                <button type="submit" class="book-consultation" id="bookConsultation">Book Consultation</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 BioML. All rights reserved.</p>
+    </footer>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

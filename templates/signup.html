@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioML - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Sign Up</h2>
+    <div class="container">
+        <div class="form-box">
+            <form method="POST" action="{{ url_for('signup') }}">
+                <input type="text" name="username" placeholder="Choose a Username" required>
+                <input type="password" name="password" placeholder="Choose a Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>    
+    <a href="{{ url_for('login') }}">Login</a>
+</body>
+</html>

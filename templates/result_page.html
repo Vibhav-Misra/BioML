@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioML - Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>BioML</h1>
+        <p>Your Personal Health Prediction and Consultation Platform</p>
+    </header> 
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('predict') }}">Predict Disease</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('consult') }}">Consult Doctor</a></li>
+            <li><a href="{{ url_for('result_page') }}">Result</a></li>
+            {% if 'username' in session %}
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('signup') }}">Signup</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    
+    <main>
+        <section class="result">
+            <h2>Prediction Result</h2>
+            <div id="predictionResult">
+                
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 BioML. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        
+        window.onload = function() {
+        const resultElement = document.getElementById('predictionResult');
+        if (resultElement) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const prediction = urlParams.get('prediction');
+            resultElement.textContent = prediction ? `Prediction: ${prediction}` : 'No prediction made.';
+        } else {
+            console.error('Prediction result element not found on load.');
+        }
+        }
+
+    </script>
+</body>
+</html>
